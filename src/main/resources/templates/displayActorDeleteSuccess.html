@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<header th:insert="~{layout/header :: head}" />
 <body>
 
+<div th:insert="~{layout/nav :: nav}" />
 
 <span th:text="${id}">Nothing found</span>
 <span> Deleted!</span>

@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<header th:insert="~{layout/header :: head}" />
 <body>
 
+<div th:insert="~{layout/nav :: nav}" />
+
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
 <!--<span th:if="${actorSuccess}">-->
+
 <span th:if="${actor}">
+    <h2>Success!</h2>
 <div th:text="${actor.getId()}">Hello</div>
 <div th:text="${actor.getFirstName()}">Hello</div>
 <div th:text="${actor.getLastName()}">Hello</div>
 <div th:text="${actor.getLastUpdate()}">Hello</div>
 </span>
+    </div>
 
-
+        <div class="col">
 <form th:action="@{/sakila/newActor}" method="POST">
-    <input type="text" th:name="firstName"/>
-    <input type="text" th:name="lastName"/>
+    <input type="text" th:name="firstName" placeholder="Enter First name"/>
+    <input type="text" th:name="lastName" placeholder="Enter Last name"/>
     <input type="submit"/>
 </form>
-
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 
 </body>
 </html>

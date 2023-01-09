@@ -26,7 +26,7 @@ public class SakilaController {
     }
 
     @GetMapping("sakila/actor")
-    public String getActor(int id, Model model){
+    public String getActor(@RequestParam int id, Model model){
         Optional<Actor> actor = actorRepository.findById(id);
 
         if (actor.isPresent()){
@@ -71,8 +71,8 @@ public class SakilaController {
         }
 
 
-    @GetMapping("/sakila/updateActor")
-    public String updateActorForm(@RequestParam int id,
+    @GetMapping("/sakila/updateActor/{id}")
+    public String updateActorForm(@PathVariable int id,
                                   Model model
                                   ){
 
