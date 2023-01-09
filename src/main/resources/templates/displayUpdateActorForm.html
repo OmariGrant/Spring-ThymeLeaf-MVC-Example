@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<span th:if="${actorSuccess}">-->
+<span th:if="${actor}">
+<div th:text="${actor.getId()}">Hello</div>
+<div th:text="${actor.getFirstName()}">Hello</div>
+<div th:text="${actor.getLastName()}">Hello</div>
+<div th:text="${actor.getLastUpdate()}">Hello</div>
+</span>
+
+
+<form th:action="@{/sakila/updateActor}" method="POST">
+    <input type="hidden" th:name="id" th:value="${actor.getId()}"/>
+    <input type="text" th:name="firstName" th:value="${actor.getFirstName()}"/>
+    <input type="text" th:name="lastName" th:value="${actor.getLastName()}"/>
+    <input type="submit"/>
+</form>
+
+<form th:action="@{/sakila/deleteActor}" method="POST">
+    <input type="hidden" th:name="id" th:value="${actor.getId()}"/>
+    <input type="submit" value="Delete"/>
+</form>
+
+
+</body>
+</html>

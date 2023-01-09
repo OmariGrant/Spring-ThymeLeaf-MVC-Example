@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="actor : ${actors}">
+<div th:text="${actor.getId()}">Hello</div>
+<div th:text="${actor.getFirstName()}">Hello</div>
+<div th:text="${actor.getLastName()}">Hello</div>
+<div th:text="${actor.getLastUpdate()}">Hello</div>
+</div>
+</body>
+</html>
