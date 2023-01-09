@@ -1,8 +1,12 @@
 package com.example.thymeleafexample.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "actor")
@@ -20,6 +24,17 @@ public class Actor {
 
     @Column(name = "last_update", nullable = false)
     private Instant lastUpdate;
+
+    @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<FilmActor> filmActors = new LinkedHashSet<>();
+
+    public Set<FilmActor> getFilmActors() {
+        return filmActors;
+    }
+
+    public void setFilmActors(Set<FilmActor> filmActors) {
+        this.filmActors = filmActors;
+    }
 
     public Integer getId() {
         return id;
