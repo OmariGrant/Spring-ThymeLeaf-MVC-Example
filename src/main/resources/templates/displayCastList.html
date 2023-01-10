@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<header th:insert="~{layout/header :: head}" />
+<body>
+
+<div th:insert="~{layout/nav :: nav}" />
+
+
+<div class="container mt-3">
+    <h2>All Actors</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Last Update</th>
+            <th>Update item</th>
+            <th>Delete item</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="actor : ${castList}">
+            <td>
+                <a th:href="@{/sakila/actor(id=${actor.getId()})}" th:text="'View ID: ' + ${actor.getId()}" />
+            </td>
+            <td th:text="${actor.getFirstName()}">Hello</td>
+            <td th:text="${actor.getLastName()}">Hello</td>
+            <td th:text="${actor.getLastUpdate()}">Hello</td>
+            <td>
+                <a th:href="@{/sakila/updateActor/{id}(id=${actor.getId()})}" th:text="'Update ' + ${actor.getFirstName()} + ' ' + ${actor.getLastName()}" />
+            </td>
+            <td>
+                <form th:action="@{/sakila/deleteActor}" method="POST">
+                    <input type="hidden" th:name="id" th:value="${actor.getId()}"/>
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+</body>
+</html>

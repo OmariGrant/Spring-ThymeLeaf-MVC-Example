@@ -7,13 +7,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes("castList")
 public class SakilaController {
     private final ActorRepository actorRepository;
+
+
+
+    @GetMapping("/sakila/cast/add/{id}")
+    public String addCastmember(@PathVariable int id, @ModelAttribute("castList")List<Actor> castList){
+        Actor actor=actorRepository.findById(id).get();
+        castList.add(actor);
+        return "displayCastList";
+    }
+    @ModelAttribute("castList")
+    public List<Actor> castList(){
+        System.out.println("castList");
+        return new ArrayList<>();
+    }
 
     public SakilaController(ActorRepository actorRepository) {
         this.actorRepository = actorRepository;
