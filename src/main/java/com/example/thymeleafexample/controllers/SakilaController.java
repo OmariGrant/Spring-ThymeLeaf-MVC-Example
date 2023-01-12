@@ -2,6 +2,7 @@ package com.example.thymeleafexample.controllers;
 
 import com.example.thymeleafexample.entities.Actor;
 import com.example.thymeleafexample.repositories.ActorRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,10 @@ public class SakilaController {
 
 
 
+    @GetMapping("/")
+    public String index(){
+        return "index";
+    }
     @GetMapping("/sakila/cast/add/{id}")
     public String addCastmember(@PathVariable int id, @ModelAttribute("castList")List<Actor> castList){
         Actor actor=actorRepository.findById(id).get();
